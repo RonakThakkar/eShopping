@@ -25,6 +25,7 @@ namespace eShopping.ProductCatalog.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks();
             services.AddControllers();
         }
 
@@ -38,12 +39,23 @@ namespace eShopping.ProductCatalog.Service
 
             app.UseHttpsRedirection();
 
+            // Option 1 - Adding VersionMiddleware before Routing Middleware.
+            //app.Map("/version", versionApp => versionApp.UseMiddleware<VersionMiddleware>());
+
+            // Add the EndpointRoutingMiddleware
             app.UseRouting();
 
+            // All middleware from here onwards know which endpoint will be invoked
             app.UseAuthorization();
 
+            // Adds the EndpointMiddleware to the pipeline. EndpointMiddleware will execute the endpoint selected by the routing middleware
+            // Register all the endpoints for your application
             app.UseEndpoints(endpoints =>
             {
+                // Option 2 - Adding VersionMiddleware as Routing Endpoint called by EndpointMiddleware.
+                // https://andrewlock.net/converting-a-terminal-middleware-to-endpoint-routing-in-aspnetcore-3/
+                endpoints.MapVersion("/version");
+                endpoints.MapHealthChecks("/health");
                 endpoints.MapControllers();
             });
         }
