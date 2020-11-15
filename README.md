@@ -7,3 +7,9 @@ Docker images from these solution are uploaded to  dockerhub by building on loca
 docker build
 docker tag
 docker push
+
+# Instructions to use Deploy.ps1
+
+powershell ./Deploy.ps1 customers "https://github.com/RonakThakkar/eShopping/raw/main/publish/eShopping.Customers.Service-1.0.0.zip"
+
+powershell ./Deploy.ps1 customers "https://github.com/RonakThakkar/eShopping/raw/main/publish/eShopping.Customers.Service-2.0.0.zip"
