@@ -14,7 +14,8 @@ WORKDIR "/src/eShopping.ProductCatalog.Service"
 RUN dotnet build "eShopping.ProductCatalog.Service.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "eShopping.ProductCatalog.Service.csproj" -c Release -o /app/publish
+ARG version
+RUN dotnet publish "eShopping.ProductCatalog.Service.csproj" -c Release /property:Version=$version -o /app/publish
 
 FROM base AS final
 WORKDIR /app

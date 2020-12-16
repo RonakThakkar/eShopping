@@ -10,6 +10,7 @@ namespace eShopping.Customers.Service.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Route("")]
     public class CustomersController : ControllerBase
     {
         private readonly ILogger<CustomersController> _logger;

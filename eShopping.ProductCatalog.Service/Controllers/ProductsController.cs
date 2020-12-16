@@ -10,6 +10,7 @@ namespace eShopping.ProductCatalog.Service.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Route("")]
     public class ProductsController : ControllerBase
     {
         private readonly ILogger<ProductsController> _logger;

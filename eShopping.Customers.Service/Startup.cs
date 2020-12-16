@@ -51,7 +51,7 @@ namespace eShopping.Customers.Service
                 // Option 2 - Adding VersionMiddleware as Routing Endpoint called by EndpointMiddleware.
                 // https://andrewlock.net/converting-a-terminal-middleware-to-endpoint-routing-in-aspnetcore-3/
                 endpoints.MapVersion("/version");
-
+                endpoints.MapPrintIP("/printip");
                 endpoints.MapHealthChecks("/health");
                 endpoints.MapControllers();
             });

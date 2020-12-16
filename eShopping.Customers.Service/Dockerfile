@@ -1,5 +1,6 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
+
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
@@ -14,7 +15,8 @@ WORKDIR "/src/eShopping.Customers.Service"
 RUN dotnet build "eShopping.Customers.Service.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "eShopping.Customers.Service.csproj" -c Release -o /app/publish
+ARG version
+RUN dotnet publish "eShopping.Customers.Service.csproj" -c Release /property:Version=$version -o /app/publish
 
 FROM base AS final
 WORKDIR /app
