@@ -46,4 +46,3 @@ docker push
 ### Step 2 - Deploy the docker image
 
 In order to deploy the microservices, I use kubectl. kubectl manifest files for different scenarios are located in separate repo.
-
